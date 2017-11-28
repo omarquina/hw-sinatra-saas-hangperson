@@ -1,5 +1,4 @@
 #language: en
-#encoding: utf-8
 Feature: start new game
 
   As a player
