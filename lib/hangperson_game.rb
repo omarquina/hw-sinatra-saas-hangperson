@@ -17,6 +17,29 @@ class HangpersonGame
     @guesses = ""
   end
 
+  def guess character
+    #valid = @word.include?(character)
+	  raise ArgumentError.new("debe indicar un caracter") if !(character =~ /[[:graph:]]/i) or !(character =~ /[[:alpha:]]/i ) or character.nil?
+    valid = @word =~ /#{character}/i
+
+    change = false 
+     if valid
+       #unless @guesses.include?(character)
+       unless @guesses =~ /#{character}/i
+         @guesses << character
+	 change = true
+       end
+    else
+      #unless @wrong_guesses.include?(character) 
+      unless @wrong_guesses =~ /#{character}/i 
+        @wrong_guesses << character 
+	change = true
+      end
+    end
+    change
+  end
+
+
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
