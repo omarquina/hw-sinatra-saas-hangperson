@@ -10,6 +10,7 @@ end
 World(WithinHelpers)
 
 When /^I start a new game with word "(.*)"$/ do |word|
+  puts "START NEw GAME: word: #{word}"
   stub_request(:post, "http://watchout4snakes.com/wo4snakes/Random/RandomWord").
     to_return(:status => 200, :headers => {}, :body => word)
   visit '/new'
@@ -25,6 +26,7 @@ end
 When /^I make the following guesses:(.*)$/ do |guesses|
   guesses = guesses.gsub(' ', '').split(',')
   guesses.each do |letter|
+	  puts "GUESSING with: #{letter}"
     fill_in("guess", :with => letter)
     click_button("Guess!")
   end

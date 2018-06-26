@@ -1,3 +1,4 @@
+@javascript
 Feature: guess correct letter
 
   As a player playing Hangperson
@@ -22,6 +23,7 @@ Scenario: guess incorrect letter
   When I guess "a"
   Then I should see "a" within "span.guesses"
 
+#@javascript
 Scenario: multiple correct and incorrect guesses
 
   Given I start a new game with word "foobar"

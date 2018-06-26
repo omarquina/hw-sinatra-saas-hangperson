@@ -13,16 +13,19 @@ require 'rack_session_access'
 require 'byebug'
 puts "ANtes de cargar capybara"
 Capybara.app = HangpersonApp
+puts "INICIALIZADA CAPyBARA APP"
 Capybara.app.configure do |app|
   app.use RackSessionAccess::Middleware
 end
-
+puts "Definiendo HangerWorld"
 class HangpersonAppWorld
   include Capybara::DSL
   include RSpec::Expectations
   include RSpec::Matchers
 end
 
+puts "Inicializando el Worl"
 World do
   HangpersonAppWorld.new
 end
+puts "saliendo de ENV"

@@ -7,9 +7,10 @@ gem 'sinatra-flash', '0.3.0'
 
 group :development, :test do
   gem "gherkin", platforms: "ruby"
-  gem 'cucumber', '2.0.0'#,platforms: 'ruby'
-  gem 'cucumber-sinatra', '0.5.0'#,platforms: 'ruby'
-  gem 'capybara', '2.4.4'
+  #gem 'cucumber', '2.0.0' #,platforms: 'ruby'
+  gem 'cucumber'#,"> 2.0" #, platforms: 'ruby'
+  gem 'cucumber-sinatra'#, '0.5.0'#,platforms: 'ruby'
+  gem 'capybara'#, '2.4.4'
 
   gem 'rspec', '3.3.0'
   gem 'rspec-autotest', '1.0.0'
@@ -24,4 +25,5 @@ group :development, :test do
   gem 'simplecov', '0.10.0'
   gem 'webmock', '1.21.0'
   gem 'ZenTest', '4.11.0'
+  gem 'selenium-webdriver'
 end

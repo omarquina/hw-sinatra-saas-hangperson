@@ -22,6 +22,7 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
+    puts "NEW: #{params.inspect}"
     erb :new
   end
   
@@ -29,7 +30,7 @@ class HangpersonApp < Sinatra::Base
     # NOTE: don't change next line - it's needed by autograder!
     word = params[:word] || HangpersonGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
-
+    puts "CREATE: #{params}, word: #{word}"
     @game = HangpersonGame.new(word)
     redirect '/show'
   end
@@ -40,7 +41,15 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
+    #puts "GUESS PATH: letter: #{letter}, check: #{@game.check_win_or_lose}"
+    result = @game.guess letter
+    flash[:message] = "You have already used that letter" if result 
+    flash[:message] = "Invalid guess" unless result
+
+    (redirect '/win' and return) if @game.check_win_or_lose == :win
+    (redirect '/lose' and return) if @game.check_win_or_lose == :lose 
     redirect '/show'
+
   end
   
   # Everytime a guess is made, we should eventually end up at this route.
@@ -50,6 +59,8 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
+    puts "SHOW: #{params}"
+    puts "  check: #{@game.check_win_or_lose}"
     erb :show # You may change/remove this line
   end
   
